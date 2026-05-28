@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 18px);
 }
 
 body {
@@ -45,6 +46,10 @@ video {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-height) + 18px);
 }
 
 button,
@@ -177,11 +182,15 @@ svg {
 
 .nav a {
   opacity: 0.86;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
 }
 
 .nav a:hover,
 .nav a:focus-visible {
   opacity: 1;
+  transform: translateY(-1px);
 }
 
 .header-cta,
@@ -201,6 +210,11 @@ svg {
 .header-cta {
   border: 1px solid currentColor;
   padding: 0 16px;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
 }
 
 .btn {
@@ -1146,12 +1160,17 @@ svg {
 }
 
 details {
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
 }
 
 summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   cursor: pointer;
   padding: 22px 24px;
   font-weight: 850;
@@ -1164,13 +1183,39 @@ summary::-webkit-details-marker {
 
 summary::after {
   content: "+";
-  float: right;
+  flex: 0 0 auto;
   color: var(--water);
   font-size: 1.2rem;
+  transition: transform 220ms ease;
 }
 
 details[open] summary::after {
-  content: "-";
+  transform: rotate(45deg);
+}
+
+details.is-closing summary::after {
+  transform: rotate(0deg);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    max-height 280ms ease,
+    opacity 200ms ease,
+    transform 280ms ease;
+}
+
+details[open] .faq-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+details.is-closing .faq-content {
+  opacity: 0;
+  transform: translateY(-4px);
 }
 
 details p {

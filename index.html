@@ -81,7 +81,7 @@
     <a class="skip-link" href="#main">Saltar al contenido</a>
 
     <header class="site-header" data-header>
-      <a class="brand" href="index.html" aria-label="HidroPro Exterior">
+      <a class="brand" href="#top" aria-label="HidroPro Exterior">
         <span class="brand-mark" aria-hidden="true"></span>
         <span>
           <strong>HidroPro</strong>
@@ -90,14 +90,14 @@
       </a>
 
       <nav class="nav" aria-label="Principal">
-        <a href="servicios/index.html">Servicios</a>
-        <a href="zonas/san-martin/index.html">Zonas</a>
-        <a href="trabajos/index.html">Trabajos</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="contacto/index.html">Contacto</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#zonas">Zonas</a>
+        <a href="#trabajos">Trabajos</a>
+        <a href="#blog">Blog</a>
+        <a href="#cotizar">Contacto</a>
       </nav>
 
-      <a class="header-cta js-wa" href="contacto/index.html">
+      <a class="header-cta" href="#cotizar">
         Cotizar
         <svg aria-hidden="true" viewBox="0 0 24 24">
           <path d="M5 12h14m-6-6 6 6-6 6" />
@@ -218,7 +218,33 @@
         </div>
       </section>
 
-      <section class="section section-light" aria-labelledby="blog-title">
+      <section id="zonas" class="section" aria-labelledby="zones-title">
+        <div class="section-head">
+          <p class="eyebrow">Zonas de servicio</p>
+          <h2 id="zones-title">Base en San Martín y cobertura a confirmar según el trabajo.</h2>
+          <p>
+            Para coordinar sin vueltas, mandá barrio o localidad junto con fotos del área. Con eso se puede
+            confirmar traslado, disponibilidad y si conviene resolverlo en una visita.
+          </p>
+        </div>
+
+        <div class="local-grid">
+          <article class="local-card">
+            <h3>San Martín</h3>
+            <p>Zona base para lavado de fachadas, patios, techos, pisos exteriores, veredas y piletas.</p>
+          </article>
+          <article class="local-card">
+            <h3>Alrededores</h3>
+            <p>Se puede consultar por Villa Ballester, Billinghurst, Caseros y localidades cercanas.</p>
+          </article>
+          <article class="local-card">
+            <h3>Cómo confirmar</h3>
+            <p>Enviá ubicación aproximada, tipo de superficie, altura y fotos para revisar si el servicio llega.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="blog" class="section section-light" aria-labelledby="blog-title">
         <div class="section-head">
           <p class="eyebrow">Guías útiles</p>
           <h2 id="blog-title">Contenido para decidir mejor antes de cotizar.</h2>
@@ -378,7 +404,7 @@
         </div>
       </section>
 
-      <section class="section section-estimate" aria-labelledby="estimate-title">
+      <section id="cotizar" class="section section-estimate" aria-labelledby="estimate-title">
         <div class="estimate-layout">
           <div>
             <p class="eyebrow">Cotización</p>

@@ -3,6 +3,7 @@ const BUSINESS_NAME = "HidroPro Exterior";
 const CONTACT_FALLBACK = "contacto/index.html";
 
 const hasWhatsApp = /^\d{10,15}$/.test(WHATSAPP_NUMBER);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const defaultMessage = [
   `Hola ${BUSINESS_NAME}, quiero pedir una cotización.`,
@@ -79,9 +80,122 @@ const setHeaderState = () => {
 setHeaderState();
 window.addEventListener("scroll", setHeaderState, { passive: true });
 
+document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+    if (!hash || hash === "#") return;
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+    history.pushState(null, "", hash);
+  });
+});
+
+if (window.location.hash) {
+  window.addEventListener("load", () => {
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    target?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+  });
+}
+
+const animatedDetails = document.querySelectorAll("details");
+
+animatedDetails.forEach((details) => {
+  const summary = details.querySelector("summary");
+  if (!summary || details.querySelector(":scope > .faq-content")) return;
+
+  const content = document.createElement("div");
+  content.className = "faq-content";
+
+  while (summary.nextSibling) {
+    content.appendChild(summary.nextSibling);
+  }
+
+  details.appendChild(content);
+
+  const setContentHeight = () => {
+    content.style.maxHeight = details.open ? `${content.scrollHeight}px` : "0px";
+  };
+
+  setContentHeight();
+
+  details.addEventListener("toggle", () => {
+    if (details.dataset.animating === "true") return;
+    setContentHeight();
+  });
+
+  summary.addEventListener("click", (event) => {
+    if (reduceMotion) return;
+    event.preventDefault();
+    if (details.dataset.animating === "true") return;
+
+    details.dataset.animating = "true";
+
+    const finish = (callback) => {
+      let done = false;
+      const complete = (transitionEvent) => {
+        if (transitionEvent && transitionEvent.target !== content) return;
+        if (done) return;
+        done = true;
+        content.removeEventListener("transitionend", complete);
+        window.clearTimeout(timer);
+        callback();
+      };
+      const timer = window.setTimeout(complete, 340);
+      content.addEventListener("transitionend", complete);
+    };
+
+    if (details.open) {
+      details.classList.add("is-closing");
+      content.style.maxHeight = `${content.scrollHeight}px`;
+      content.offsetHeight;
+      content.style.maxHeight = "0px";
+
+      finish(() => {
+        details.open = false;
+        details.classList.remove("is-closing");
+        details.dataset.animating = "false";
+      });
+      return;
+    }
+
+    details.open = true;
+    details.classList.remove("is-closing");
+    content.style.maxHeight = "0px";
+    content.offsetHeight;
+    content.style.maxHeight = `${content.scrollHeight}px`;
+
+    finish(() => {
+      details.dataset.animating = "false";
+      setContentHeight();
+    });
+  });
+});
+
+window.addEventListener(
+  "resize",
+  () => {
+    animatedDetails.forEach((details) => {
+      const content = details.querySelector(":scope > .faq-content");
+      if (content && details.open) {
+        content.style.maxHeight = `${content.scrollHeight}px`;
+      }
+    });
+  },
+  { passive: true }
+);
+
 const previewVideos = document.querySelectorAll(".work-feature video, .video-grid video");
 const trackedVideoAutoplays = new WeakSet();
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 previewVideos.forEach((video) => {
   video.muted = true;
