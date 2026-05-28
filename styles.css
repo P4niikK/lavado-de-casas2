@@ -841,6 +841,10 @@ svg {
   align-items: start;
 }
 
+.service-intro {
+  margin-bottom: 46px;
+}
+
 .copy-block {
   display: grid;
   gap: 26px;
@@ -1218,7 +1222,29 @@ details p {
 }
 
 @media (max-width: 980px) {
+  :root {
+    --header-height: 112px;
+  }
+
+  .site-header {
+    height: var(--header-height);
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 8px 16px;
+    padding-block: 10px;
+  }
+
   .nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    gap: 18px;
+    padding: 4px 0 2px;
+    scrollbar-width: none;
+    white-space: nowrap;
+  }
+
+  .nav::-webkit-scrollbar {
     display: none;
   }
 
@@ -1266,11 +1292,11 @@ details p {
 
 @media (max-width: 700px) {
   :root {
-    --header-height: 68px;
+    --header-height: 116px;
   }
 
   .site-header {
-    padding-inline: 16px;
+    padding: 10px 16px;
   }
 
   .header-cta {
@@ -1360,5 +1386,9 @@ details p {
   *::after {
     scroll-behavior: auto !important;
     transition: none !important;
+  }
+
+  video {
+    animation: none !important;
   }
 }

@@ -1,5 +1,8 @@
-const WHATSAPP_NUMBER = "5491100000000";
+const WHATSAPP_NUMBER = "";
 const BUSINESS_NAME = "HidroPro Exterior";
+const CONTACT_FALLBACK = "contacto/index.html";
+
+const hasWhatsApp = /^\d{10,15}$/.test(WHATSAPP_NUMBER);
 
 const defaultMessage = [
   `Hola ${BUSINESS_NAME}, quiero pedir una cotización.`,
@@ -11,18 +14,57 @@ const defaultMessage = [
 const whatsappUrl = (message = defaultMessage) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
+const contactFallbackUrl = () => {
+  const depth = window.location.pathname
+    .replace(/\/[^/]*$/, "/")
+    .split("/")
+    .filter(Boolean)
+    .filter((part) => part !== "lavado-de-casas").length;
+
+  return `${"../".repeat(depth)}${CONTACT_FALLBACK}`;
+};
+
+const campaignParams = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"];
+const currentParams = new URLSearchParams(window.location.search);
+const storedCampaign = JSON.parse(sessionStorage.getItem("campaign_params") || "{}");
+
+campaignParams.forEach((key) => {
+  const value = currentParams.get(key);
+  if (value) storedCampaign[key] = value;
+});
+
+sessionStorage.setItem("campaign_params", JSON.stringify(storedCampaign));
+
 const track = (eventName, details = {}) => {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...details });
+  window.dataLayer.push({ event: eventName, ...storedCampaign, ...details });
   if (typeof window.gtag === "function") {
-    window.gtag("event", eventName, details);
+    window.gtag("event", eventName, { ...storedCampaign, ...details });
   }
 };
 
 document.querySelectorAll(".js-wa").forEach((link) => {
-  link.href = whatsappUrl();
+  const linkText = link.textContent.trim().replace(/\s+/g, " ");
+  const linkMessage = [
+    `Hola ${BUSINESS_NAME}, quiero pedir una cotización.`,
+    `Consulta: ${link.dataset.waMessage || linkText}`,
+    `Página: ${document.title}`,
+    "Zona:",
+    "Puedo enviar fotos o videos por acá."
+  ].join("\n");
+
+  if (hasWhatsApp) {
+    link.href = whatsappUrl(linkMessage);
+    link.target = "_blank";
+    link.rel = "noreferrer";
+  } else if (link.href.includes("wa.me")) {
+    link.href = contactFallbackUrl();
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+  }
+
   link.addEventListener("click", () => {
-    track("whatsapp_click", {
+    track(hasWhatsApp ? "whatsapp_click" : "contact_fallback_click", {
       link_text: link.textContent.trim(),
       page_path: window.location.pathname
     });
@@ -39,10 +81,16 @@ window.addEventListener("scroll", setHeaderState, { passive: true });
 
 const previewVideos = document.querySelectorAll(".work-feature video, .video-grid video");
 const trackedVideoAutoplays = new WeakSet();
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 previewVideos.forEach((video) => {
   video.muted = true;
   video.playsInline = true;
+
+  if (reduceMotion) {
+    video.controls = true;
+    return;
+  }
 
   const play = () => video.play().catch(() => {});
   const pause = () => video.pause();
@@ -53,7 +101,7 @@ previewVideos.forEach((video) => {
   video.addEventListener("blur", pause);
 });
 
-if ("IntersectionObserver" in window) {
+if (!reduceMotion && "IntersectionObserver" in window) {
   const videoObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -103,10 +151,15 @@ form?.addEventListener("submit", (event) => {
     .filter(Boolean)
     .join("\n");
 
-  window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
   track("quote_form_submit", {
     service,
     zone,
     page_path: window.location.pathname
   });
+
+  if (hasWhatsApp) {
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+  } else {
+    window.location.href = contactFallbackUrl();
+  }
 });

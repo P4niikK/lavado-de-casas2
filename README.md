@@ -28,14 +28,14 @@ Primera landing premium para el negocio de lavado a presión.
 - `blog/hidrolavado-consorcios-locales/index.html`: artículo para intención comercial y campañas.
 - `blog/lavado-a-presion-zona-norte/index.html`: artículo GEO para San Martín y alrededores.
 - `contacto/index.html`: formulario de cotización.
-- `landing/cotizar-lavado-exterior/index.html`: landing para SEM/Meta Ads con `noindex`.
+- `landing/cotizar-lavado-exterior/index.html`: página de cotización rápida con `noindex`.
 
 ## Datos placeholder para reemplazar
 
 - Nombre: `HidroPro Exterior`
-- WhatsApp: `5491100000000`
+- WhatsApp: configurar número real en `script.js`.
 - Zona: `San Martín y alrededores`
-- URL schema: `https://example.com`
+- URL schema: `https://lameapiton.github.io/lavado-de-casas`
 
 Los placeholders están en:
 
