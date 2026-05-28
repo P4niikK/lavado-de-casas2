@@ -29,6 +29,12 @@ Arquitectura del sitio:
 - `/blog/que-fotos-mandar-para-cotizar/`: checklist para cotizar por WhatsApp.
 - `/blog/cada-cuanto-limpiar-exterior-casa/`: guía de frecuencia de mantenimiento.
 - `/blog/errores-comunes-hidrolavadora/`: guía preventiva para propietarios.
+- `/blog/preparar-casa-antes-lavado-a-presion/`: checklist de preparación antes del servicio.
+- `/blog/lavado-veredas-entradas-patios/`: guía de veredas, entradas, patios y pisos exteriores.
+- `/blog/lavado-medianeras-paredes-exteriores/`: guía de paredes exteriores, medianeras y humedad.
+- `/blog/limpieza-exterior-antes-vender-alquilar/`: guía para preparar propiedades antes de vender o alquilar.
+- `/blog/hidrolavado-consorcios-locales/`: guía para consorcios, locales y accesos compartidos.
+- `/blog/lavado-a-presion-zona-norte/`: guía local para San Martín y alrededores de Zona Norte.
 - `/contacto/`: formulario de cotización por WhatsApp.
 - `/landing/cotizar-lavado-exterior/`: landing de campañas SEM/Meta Ads con noindex.
 

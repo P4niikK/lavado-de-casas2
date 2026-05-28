@@ -86,6 +86,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://example.com/blog/preparar-casa-antes-lavado-a-presion/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://example.com/blog/lavado-veredas-entradas-patios/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://example.com/blog/lavado-medianeras-paredes-exteriores/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://example.com/blog/limpieza-exterior-antes-vender-alquilar/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://example.com/blog/hidrolavado-consorcios-locales/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://example.com/blog/lavado-a-presion-zona-norte/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <priority>0.72</priority>
+  </url>
+  <url>
     <loc>https://example.com/contacto/</loc>
     <lastmod>2026-05-28</lastmod>
     <priority>0.8</priority>

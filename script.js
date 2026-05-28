@@ -38,6 +38,7 @@ setHeaderState();
 window.addEventListener("scroll", setHeaderState, { passive: true });
 
 const previewVideos = document.querySelectorAll(".work-feature video, .video-grid video");
+const trackedVideoAutoplays = new WeakSet();
 
 previewVideos.forEach((video) => {
   video.muted = true;
@@ -60,10 +61,13 @@ if ("IntersectionObserver" in window) {
 
         if (entry.isIntersecting) {
           video.play().catch(() => {});
-          track("video_autoplay_in_view", {
-            page_path: window.location.pathname,
-            video_src: video.currentSrc || video.querySelector("source")?.src || ""
-          });
+          if (!trackedVideoAutoplays.has(video)) {
+            track("video_autoplay_in_view", {
+              page_path: window.location.pathname,
+              video_src: video.currentSrc || video.querySelector("source")?.src || ""
+            });
+            trackedVideoAutoplays.add(video);
+          }
         } else {
           video.pause();
         }

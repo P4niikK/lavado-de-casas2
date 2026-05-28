@@ -21,6 +21,12 @@ Primera landing premium para el negocio de lavado a presión.
 - `blog/que-fotos-mandar-para-cotizar/index.html`: artículo de conversión.
 - `blog/cada-cuanto-limpiar-exterior-casa/index.html`: artículo SEO.
 - `blog/errores-comunes-hidrolavadora/index.html`: artículo SEO.
+- `blog/preparar-casa-antes-lavado-a-presion/index.html`: artículo de preparación y conversión.
+- `blog/lavado-veredas-entradas-patios/index.html`: artículo SEO de pisos exteriores.
+- `blog/lavado-medianeras-paredes-exteriores/index.html`: artículo SEO de paredes y medianeras.
+- `blog/limpieza-exterior-antes-vender-alquilar/index.html`: artículo para intención inmobiliaria.
+- `blog/hidrolavado-consorcios-locales/index.html`: artículo para intención comercial y campañas.
+- `blog/lavado-a-presion-zona-norte/index.html`: artículo GEO para San Martín y alrededores.
 - `contacto/index.html`: formulario de cotización.
 - `landing/cotizar-lavado-exterior/index.html`: landing para SEM/Meta Ads con `noindex`.
 
@@ -43,5 +49,13 @@ Los placeholders están en:
 
 - `assets/generated/hero-ai-pressure-washing.jpg`: imagen AI temporal para hero.
 - `assets/media/*`: foto y videos reales recibidos por WhatsApp.
+- `assets/blog/*`: imágenes editoriales temporales para artículos.
 
 La imagen AI no debe presentarse como trabajo real. Cuando haya fotos profesionales reales, conviene reemplazar el hero y dejar esta imagen fuera de producción.
+
+## Mejoras aplicadas para auditoría técnica
+
+- Videos MP4 recomprimidos sin audio y con `faststart` para reducir peso inicial.
+- Blog ampliado con guías para búsquedas informativas, locales y de conversión.
+- Sitemap y `llms.txt` actualizados con los nuevos artículos.
+- `.gitattributes` agregado para normalizar finales de línea y tratar media como binario.
