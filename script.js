@@ -194,28 +194,35 @@ window.addEventListener(
   { passive: true }
 );
 
-const previewVideos = document.querySelectorAll(".work-feature video, .video-grid video");
+const featureVideos = document.querySelectorAll(".work-feature video");
+const hoverVideos = document.querySelectorAll(".video-grid video");
 const trackedVideoAutoplays = new WeakSet();
 
-previewVideos.forEach((video) => {
+[...featureVideos, ...hoverVideos].forEach((video) => {
   video.muted = true;
   video.playsInline = true;
-
-  if (reduceMotion) {
-    video.controls = true;
-    return;
-  }
-
-  const play = () => video.play().catch(() => {});
-  const pause = () => video.pause();
-
-  video.addEventListener("mouseenter", play);
-  video.addEventListener("focus", play);
-  video.addEventListener("mouseleave", pause);
-  video.addEventListener("blur", pause);
 });
 
-if (!reduceMotion && "IntersectionObserver" in window) {
+if (reduceMotion) {
+  [...featureVideos, ...hoverVideos].forEach((video) => {
+    video.controls = true;
+  });
+} else {
+  hoverVideos.forEach((video) => {
+    const play = () => video.play().catch(() => {});
+    const pause = () => {
+      video.pause();
+      video.currentTime = 0;
+    };
+
+    video.addEventListener("mouseenter", play);
+    video.addEventListener("focus", play);
+    video.addEventListener("mouseleave", pause);
+    video.addEventListener("blur", pause);
+  });
+}
+
+if (!reduceMotion && "IntersectionObserver" in window && featureVideos.length) {
   const videoObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -241,7 +248,7 @@ if (!reduceMotion && "IntersectionObserver" in window) {
     }
   );
 
-  previewVideos.forEach((video) => videoObserver.observe(video));
+  featureVideos.forEach((video) => videoObserver.observe(video));
 }
 
 const form = document.querySelector("[data-estimate-form]");
