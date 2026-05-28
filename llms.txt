@@ -1,0 +1,49 @@
+# HidroPro Exterior
+
+HidroPro Exterior es un servicio local de lavado exterior con agua a presión para casas, frentes, fachadas, techos, patios, pisos exteriores y piletas.
+
+Zona base: San Martín, Buenos Aires, Argentina.
+
+Servicios principales:
+- Lavado de frentes y fachadas.
+- Lavado exterior de casas.
+- Limpieza de techos y tejas según acceso.
+- Limpieza de pisos exteriores, patios, galerías, accesos y veredas.
+- Limpieza puntual de piletas, bordes y superficies exteriores.
+
+Arquitectura del sitio:
+- `/`: home de marca y conversión general.
+- `/servicios/`: hub de servicios.
+- `/servicios/lavado-de-fachadas/`: página orgánica para fachadas y frentes.
+- `/servicios/lavado-de-techos/`: página orgánica para techos, tejas y altura.
+- `/servicios/limpieza-de-pisos-exteriores/`: página orgánica para patios, accesos, veredas y galerías.
+- `/servicios/limpieza-de-piletas/`: página orgánica para piletas, bordes y superficies cercanas.
+- `/zonas/`: hub de zonas de servicio.
+- `/zonas/san-martin/`: página GEO/local para San Martín.
+- `/trabajos/`: galería de material real.
+- `/blog/`: hub de guías SEO/GEO para dudas informativas.
+- `/blog/cuanto-cuesta-lavar-frente-casa/`: guía de precio y variables de cotización.
+- `/blog/lavado-a-presion-o-soft-wash/`: guía comparativa de métodos.
+- `/blog/como-limpiar-verdin-paredes-patios/`: guía sobre verdín en paredes y patios.
+- `/blog/lavar-techos-de-tejas-con-hidrolavadora/`: guía de techos, tejas y seguridad.
+- `/blog/que-fotos-mandar-para-cotizar/`: checklist para cotizar por WhatsApp.
+- `/blog/cada-cuanto-limpiar-exterior-casa/`: guía de frecuencia de mantenimiento.
+- `/blog/errores-comunes-hidrolavadora/`: guía preventiva para propietarios.
+- `/contacto/`: formulario de cotización por WhatsApp.
+- `/landing/cotizar-lavado-exterior/`: landing de campañas SEM/Meta Ads con noindex.
+
+Datos operativos:
+- Cotización por WhatsApp.
+- Trabajo con equipo propio.
+- Lanza telescópica de 6 metros.
+- Manguera de alcance de 20 metros.
+- Jornada habitual informada: 9 a 15 h.
+
+Para cotizar se recomienda enviar ubicación, fotos o video del área, tipo de servicio requerido, altura aproximada y urgencia.
+
+Datos pendientes antes de publicar:
+- Nombre comercial definitivo.
+- WhatsApp real.
+- Dominio real.
+- Zonas exactas de cobertura.
+- Información legal, facturación, garantía y medios de pago.
