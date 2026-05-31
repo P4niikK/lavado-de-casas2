@@ -1751,84 +1751,41 @@ details p {
   }
 }
 
-/* ---- Mapa interactivo de zonas ---- */
+/* ---- Mapa de zonas (Leaflet) ---- */
 .zona-map-wrap {
-  width: min(640px, 100%);
+  width: min(760px, 100%);
   margin: 8px auto 0;
 }
 
-.zona-map {
-  display: block;
+.zona-mapa {
+  position: relative;
+  isolation: isolate; /* contiene los z-index internos de Leaflet bajo el header */
+  z-index: 0;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: clamp(360px, 56svh, 520px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--mist);
 }
 
-.zona-region {
-  cursor: pointer;
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), filter 0.22s ease;
-  transform-box: fill-box;
-  transform-origin: center;
-  outline: none;
+.zona-mapa:focus-visible {
+  outline: 3px solid var(--water);
+  outline-offset: 2px;
 }
 
-.zona-region path {
-  stroke: var(--paper);
-  stroke-width: 3;
-  stroke-linejoin: round;
-  transition: fill 0.2s ease;
-}
-
-.zona-region[data-tier="nucleo"] path {
-  fill: #0f6f84;
-}
-.zona-region[data-tier="cercania"] path {
-  fill: #3f9f8c;
-}
-.zona-region[data-tier="lejos"] path {
-  fill: #8cc07f;
-}
-.zona-region[data-tier="contexto"] path {
-  fill: #ccd6cf;
-}
-
-/* elevación + nombre al pasar el mouse / foco / tap */
-.zona-region:hover,
-.zona-region.is-active,
-.zona-region:focus-visible {
-  transform: translateY(-15px);
-  filter: drop-shadow(0 14px 16px rgba(16, 34, 36, 0.32));
-}
-
-.zona-region:hover path,
-.zona-region.is-active path,
-.zona-region:focus-visible path {
-  stroke-width: 4;
-}
-
-.zona-label {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease;
-}
-
-.zona-region:hover .zona-label,
-.zona-region.is-active .zona-label,
-.zona-region:focus-visible .zona-label {
-  opacity: 1;
-}
-
-.zona-label rect {
-  fill: var(--water-dark);
-  filter: drop-shadow(0 4px 8px rgba(16, 34, 36, 0.35));
-}
-
-.zona-label text {
-  fill: var(--white);
-  font-size: 20px;
+/* pill con el nombre de la zona */
+.leaflet-tooltip.zona-tip {
+  background: var(--water-dark);
+  color: var(--white);
+  border: 0;
+  border-radius: 999px;
+  padding: 5px 12px;
   font-weight: 750;
-  text-anchor: middle;
-  letter-spacing: 0.01em;
+  font-size: 0.84rem;
+  box-shadow: 0 6px 16px rgba(16, 34, 36, 0.3);
+}
+.leaflet-tooltip.zona-tip::before {
+  display: none;
 }
 
 .zona-legend {
@@ -1836,7 +1793,7 @@ details p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px 22px;
-  margin: 22px 0 0;
+  margin: 18px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1854,15 +1811,13 @@ details p {
   width: 16px;
   height: 16px;
   border-radius: 5px;
+  border: 1px solid rgba(16, 34, 36, 0.15);
 }
 .zona-legend [data-tier="nucleo"] span {
   background: #0f6f84;
 }
-.zona-legend [data-tier="cercania"] span {
+.zona-legend [data-tier="cobertura"] span {
   background: #3f9f8c;
-}
-.zona-legend [data-tier="lejos"] span {
-  background: #8cc07f;
 }
 
 .zona-map-hint {
@@ -1870,16 +1825,4 @@ details p {
   text-align: center;
   color: var(--muted);
   font-size: 0.82rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .zona-region {
-    transition: filter 0.2s ease;
-  }
-}
-
-@media (hover: none) {
-  .zona-map-hint::after {
-    content: "";
-  }
 }
