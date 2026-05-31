@@ -1,6 +1,6 @@
-# HidroPro Exterior
+# Lavado de Casas
 
-HidroPro Exterior es un servicio local de lavado exterior con agua a presión para casas, frentes, fachadas, techos, patios, pisos exteriores y piletas.
+Lavado de Casas es un servicio local de lavado exterior con agua a presión para casas, frentes, fachadas, techos, patios, pisos exteriores y piletas.
 
 Zona base: San Martín, Buenos Aires, Argentina.
 

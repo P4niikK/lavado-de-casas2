@@ -1,6 +1,6 @@
 {
-  "name": "HidroPro Exterior",
-  "short_name": "HidroPro",
+  "name": "Lavado de Casas",
+  "short_name": "Lavado de Casas",
   "description": "Lavado a presión de casas, fachadas, techos, patios, pisos exteriores y piletas.",
   "start_url": "/lavado-de-casas/",
   "display": "standalone",
